@@ -36,10 +36,10 @@ function debug()
     "<span>Obj-Axis: " + axis + "</span><br>";
 }
 
-window.addEventListener("resize", owo);
-window.addEventListener("load", owo);
+window.addEventListener("resize", updateScene);
+window.addEventListener("load", updateScene);
 
-owo();
+updateScene();
 
 if (
     isDebug == true
