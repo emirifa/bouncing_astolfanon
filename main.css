@@ -1,0 +1,167 @@
+:root
+{
+    --scene-height: 720px;
+    --scene-width: 1280px;
+
+    --anim-leftpos: 1184px;
+    --anim-toppos: 512px;
+}
+
+html,
+body
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#debug
+{
+    display: none;
+    position: absolute;
+    height: 550px;
+    width: 500px;
+    color: white;
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#scene
+{
+    position: relative;
+}
+
+.scene--astolfanon
+{
+    width: var(--scene-width);
+    height: var(--scene-height);
+}
+
+#astolfanon
+{
+    width: 96px;
+    height: 208px;
+    position: relative;
+    transform-style: preserve-3d;
+
+    animation: moveX 2s linear infinite alternate,
+               moveY 3.4s linear 0s infinite alternate,
+               rotate 3s linear infinite;
+}
+
+#astolfanon:hover
+{
+    cursor: pointer;
+}
+
+.astolfanon__face
+{
+    position: absolute;
+}
+
+.front,
+.right,
+.back,
+.left
+{
+    width: 96px;
+    height: 208px;
+}
+
+.top,
+.bottom
+{
+    width: 96px;
+    height: 96px;
+}
+
+.front,
+.right,
+.back,
+.left,
+.top,
+.bottom
+{
+    background-image: url(/assets/spritesheet.png);
+}
+
+.front
+{
+    background-position: -96px -96px;
+
+    transform: rotateY(0deg) translateZ(48px);
+}
+
+.right
+{
+    background-position: -288px -96px;
+
+    transform: rotateY(90deg) translateZ(48px);
+}
+
+.back
+{
+    background-position: -192px -96px;
+
+    transform: rotateY(180deg) translateZ(48px);
+}
+
+.left
+{
+    background-position: 0px -96px;
+
+    transform: rotateY(-90deg) translateZ(48px);
+}
+
+.top
+{
+    background-position: -96px 0px;
+
+    transform: rotateX(90deg) translateZ(48px);
+}
+
+.bottom
+{
+    background-position: -192px 0px;
+
+    transform: rotateX(-90deg) translateZ(160px);
+}
+
+@keyframes moveX
+{
+    from
+    {
+        left: 0;
+    }
+
+    to
+    {
+        left: var(--anim-leftpos);
+    }
+}
+
+@keyframes moveY
+{
+    from
+    {
+        top: 0;
+    }
+
+    to
+    {
+        top: var(--anim-toppos);
+    }
+}
+
+@keyframes rotate
+{
+    from
+    {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    to
+    {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
