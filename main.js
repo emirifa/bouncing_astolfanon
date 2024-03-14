@@ -1,29 +1,26 @@
-var debug = false;
+var isDebug = true;
 
 document.querySelector("#astolfanon").addEventListener("click", function()
 {
     window.location.href = "https://otkph.am";
 });
 
-function owo()
+function updateScene()
 {
-    var width = window.innerWidth,
-        height = window.innerHeight;
+    let width = window.innerWidth,
+        height = window.innerHeight,
+        style = document.documentElement.style;
 
-    var style = document.querySelector("style#custom");
-
-    style.innerHTML = ":root {" +
-    "--scene-height: " + height + "px;" +
-    "--scene-width: " + width + "px;" +
-    "--anim-leftpos: " + (width - 96) + "px;" +
-    "--anim-toppos: " + (height - 208) + "px;" +
-    "}";
+    style.setProperty("--scene-height", height + "px");
+    style.setProperty("--scene-width", width + "px");
+    style.setProperty("--anim-leftpos", width - 96 + "px");
+    style.setProperty("--anim-toppos", height - 208 + "px");
 }
 
-function _debug()
+function debug()
 {
-    var element = document.querySelector("#debug"),
-        screen = document.querySelector("#scene").getBoundingClientRect(),
+    let element = document.querySelector("#debug"),
+        scene = document.querySelector("#scene").getBoundingClientRect(),
         obj = document.querySelector("#astolfanon").getBoundingClientRect(),
         axis = window.getComputedStyle(
             document.querySelector("#astolfanon"), null
@@ -32,20 +29,21 @@ function _debug()
     element.innerHTML = "" +
     "<span>Window-H: " + window.innerHeight + "</span><br>" +
     "<span>Window-W: " + window.innerWidth + "</span><br>" +
-    "<span>Scene-H: " + screen.height + "</span><br>" +
-    "<span>Scene-W: " + screen.width + "</span><br>" +
+    "<span>Scene-H: " + scene.height + "</span><br>" +
+    "<span>Scene-W: " + scene.width + "</span><br>" +
     "<span>Obj-X: " + obj.x + "</span><br>" +
     "<span>Obj-Y: " + obj.y + "</span><br>" +
-    "<span>Obj-Axis: " + axis + "</span><br>" +
-    "<span>Orientation: " + window.orientation + "</span>"; // works only on mobile devices
+    "<span>Obj-Axis: " + axis + "</span><br>";
 }
 
-window.onresize = owo;
-window.onload = owo;
+window.addEventListener("resize", owo);
+window.addEventListener("load", owo);
+
+owo();
 
 if (
-    debug == true
+    isDebug == true
 ) {
-    document.querySelector("#debug").style.display = "block";
-    setInterval(_debug);
+    document.querySelector("#debug").classList.remove("hidden");
+    setInterval(debug);
 }
