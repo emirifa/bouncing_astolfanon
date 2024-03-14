@@ -1,4 +1,4 @@
-var isDebug = true;
+var isDebug = false;
 
 document.querySelector("#astolfanon").addEventListener("click", function()
 {
